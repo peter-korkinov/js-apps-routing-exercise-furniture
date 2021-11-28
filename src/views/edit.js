@@ -59,19 +59,19 @@ function editPage(ctx) {
     update(null, {});
 
     function update(errorMsg, errors) {
-        ctx.render(editTemplate(loadProduct(prodPromise)));
+        ctx.render(editTemplate(loadProduct(prodPromise, errorMsg, errors)));
     }
 
-    async function loadProduct(prodPromise) {
+    async function loadProduct(prodPromise, errorMsg, errors) {
         const product = await prodPromise;
-        return formTemplate(product, onSubmit, '', {});
+        return formTemplate(product, onSubmit, errorMsg, errors);
     }
 
     async function onSubmit(event) {
         event.preventDefault();
-
+        
         const formData = new FormData(event.target);
-
+        
         const make = formData.get('make');
         const model = formData.get('model');
         const year = Number(formData.get('year'));
@@ -90,6 +90,7 @@ function editPage(ctx) {
                 price,
                 img
             }
+            
             createNewProductValidator(requiredFields);
 
             const prod = await prodPromise
@@ -104,6 +105,7 @@ function editPage(ctx) {
                 material,
                 isNotLegacy
             });
+
             ctx.page.redirect(`/details/${newProduct._id}`);
         } catch (err) {
             const message = err.message || err.error.message

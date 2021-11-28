@@ -1,4 +1,4 @@
-import { deleteProductById, getProductById } from "./api/data.js";
+import {deleteProductById, getProductById} from "./api/data.js";
 
 function getUserData() {
     return JSON.parse(sessionStorage.getItem('userData'));
@@ -17,8 +17,7 @@ function isLogged() {
 }
 
 async function loadProduct(ctx, next) {
-    const productPromise = getProductById(ctx.params.id);
-    ctx.productPromise = productPromise;
+    ctx.productPromise = getProductById(ctx.params.id);
     next();
 }
 
@@ -104,5 +103,6 @@ export {
     isLogged,
     loadProduct,
     deleteProduct,
-    createNewProductValidator
+    createNewProductValidator,
+    isValidUrl
 };
