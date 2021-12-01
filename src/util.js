@@ -33,6 +33,20 @@ function isValidUrl(str) {
 }
 
 function createNewProductValidator(obj) {
+    const objCopy = Object.assign({}, obj);
+
+    for (let i in objCopy) {
+        if (objCopy[i] === '' || objCopy[i] === 0) {
+            objCopy[i] = true;
+        }
+    }
+
+    if (Object.values(objCopy).includes(true)) {
+        throw {
+            error: new Error('All required fields must be filled'),
+            errors: objCopy
+        }
+    }
 
     if (obj.make.length < 4) {
         throw {
@@ -82,18 +96,15 @@ function createNewProductValidator(obj) {
             }
         }
     }
-    for (let i in obj) {
-        if (obj[i] === '' || obj[i] === 0) {
-            obj[i] = true;
-        }
-    }
+}
 
-    if (Object.values(obj).includes(true)) {
-        throw {
-            error: new Error('All required fields must be filled'),
-            errors: obj
-        }
-    }
+function parseQueryString(string) {
+    const params = string
+        .split('&')
+        .map(p => p.split('='))
+        .reduce((a, [k, v]) => Object.assign(a, { [k]: v }), {});
+
+    return params;
 }
 
 export {
@@ -104,5 +115,6 @@ export {
     loadProduct,
     deleteProduct,
     createNewProductValidator,
-    isValidUrl
+    isValidUrl,
+    parseQueryString
 };

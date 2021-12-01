@@ -1,13 +1,14 @@
-import {getUserData, isLogged, loadProduct, deleteProduct} from "./util.js";
+import {isLogged, loadProduct, deleteProduct} from "./util.js";
 import { page, render } from "./lib.js";
 import {logout} from "./api/data.js";
 
-import {catalogPage, myFurniturePage} from "./views/catalog.js";
+import {catalogPage} from "./views/catalog.js";
 import {createPage} from "./views/create.js";
 import {loginPage} from "./views/login.js";
 import {registerPage} from "./views/register.js";
 import {detailsPage} from "./views/details.js";
 import {editPage} from "./views/edit.js";
+import {notify} from "./common/notify.js";
 
 
 const root = document.getElementById('root');
@@ -16,7 +17,7 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 page(decorateContext)
 page('/home', catalogPage);
 page('/', '/home');
-page('/my-furniture', myFurniturePage);
+page('/my-furniture', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
@@ -44,7 +45,7 @@ function updateUserNav() {
 }
 
 async function onLogout() {
-    await logout();
+    notify(await logout());
     updateUserNav();
     page('/home');
 }

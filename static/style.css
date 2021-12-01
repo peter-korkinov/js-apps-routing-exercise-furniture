@@ -4,7 +4,6 @@
 
 body {
     width: 980px;
-    font-weight: 200;
     letter-spacing: 1px;
     margin: auto;
     font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -101,8 +100,9 @@ a.active {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    margin-left: 30px;
-    flex: 0 0 42%;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0 0 100%;
     max-width: 42%;
 }
 
@@ -121,7 +121,6 @@ a.active {
 }
 
 .btn {
-    font-size: .75rem;
     text-transform: uppercase;
     display: inline-block;
     font-weight: 600;
@@ -161,9 +160,45 @@ a.active {
     margin-top: 20px;
 }
 
+.btn-current-page {
+    color: #fff;
+    background-color: #69b8d7;
+    border-color: #1f9bcf;
+}
+
 .form-group {
     margin-bottom: 1rem;
 }
+
+#search-form {
+    display: inline-block;
+    width: 50%;
+    float: right;
+    padding: 20px;
+}
+
+#catalog-head {
+    display: inline-block;
+    width: 50%;
+}
+
+#search-field {
+    width: 50%;
+    display: inline-block;
+    padding: 5px;
+    margin-left: 80px;
+}
+
+#search-btn {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px 5px 10px 5px;
+}
+
+/*#pari {*/
+/*    display: inline-block;*/
+/*    width: 50%;*/
+/*}*/
 
 .form-control {
     display: block;
@@ -216,4 +251,47 @@ img {
 
 .error {
     color: red;
+}
+
+.page-index {
+    margin: 0 8px;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+#notification {
+    /*position: absolute;*/
+    /*top: 30%;*/
+    /*right: 45%;*/
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0 3px 3px 0;
+    animation-name: example;
+    animation-duration: 1s;
+}
+
+@keyframes example {
+    0% {top: -10%;}
+    100% {top: 35px;}
+}
+
+#notification-close {
+    color: black;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 2px;
+}
+
+#notification-message {
+    display: inline-block;
 }
