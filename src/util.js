@@ -1,4 +1,5 @@
 import {deleteProductById, getProductById} from "./api/data.js";
+import {showModal} from "./common/modal.js";
 
 function getUserData() {
     return JSON.parse(sessionStorage.getItem('userData'));
@@ -22,8 +23,15 @@ async function loadProduct(ctx, next) {
 }
 
 async function deleteProduct(ctx) {
-    await deleteProductById(ctx.params.id);
-    ctx.page.redirect('/home');
+    showModal('Are you sure you want to delete this item?', onSelect);
+
+    async function onSelect(choice) {
+        if (choice) {
+            await deleteProductById(ctx.params.id);
+            ctx.page.redirect('/home');
+        }
+    }
+
 }
 
 function isValidUrl(str) {
@@ -99,12 +107,10 @@ function createNewProductValidator(obj) {
 }
 
 function parseQueryString(string) {
-    const params = string
+    return string
         .split('&')
         .map(p => p.split('='))
         .reduce((a, [k, v]) => Object.assign(a, { [k]: v }), {});
-
-    return params;
 }
 
 export {

@@ -295,3 +295,42 @@ img {
 #notification-message {
     display: inline-block;
 }
+
+#overlay {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: #aaaeae;
+    color: black;
+    font-weight: bold;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    box-shadow: 0 3px 3px 0;
+    animation-name: modalAni;
+    animation-duration: 0.5s;
+}
+
+#modal button {
+    width: 60px;
+    padding: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+@keyframes modalAni {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
