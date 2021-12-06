@@ -53,9 +53,9 @@ function loginPage(ctx) {
                     }
                 }
             }
-                await login(email, password);
-                ctx.updateUserNav();
-                ctx.page.redirect('/home');
+            await login(email, password);
+            ctx.updateUserNav();
+            ctx.page.redirect('/home');
         } catch (err) {
             const message = err.message || err.error.message
             update(message, err.errors || {});
